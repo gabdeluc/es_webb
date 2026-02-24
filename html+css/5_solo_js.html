@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <style>
+        body { font-family: sans-serif; display: flex; gap: 20px; padding: 20px; background: #f0f2f5; }
+        .column { flex: 1; background: #fff; padding: 10px; border-radius: 8px; min-height: 300px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .column h3 { margin-top: 0; text-align: center; color: #333; }
+        .task { background: #e3f2fd; padding: 10px; margin-bottom: 10px; border-radius: 4px; cursor: grab; border: 1px solid #90caf9; }
+        .task:active { cursor: grabbing; }
+        .dragging { opacity: 0.5; }
+    </style>
+</head>
+<body>
+    <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h3>Da Fare</h3>
+    </div>
+    <div class="column" id="doing" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h3>In Corso</h3>
+    </div>
+    <div class="column" id="done" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h3>Fatto</h3>
+    </div>
+
+    <script>
+        // Dati iniziali se LocalStorage è vuoto
+        const initialTasks = [
+            { id: 't1', text: 'Imparare JS', status: 'todo' },
+            { id: 't2', text: 'Capire le Promise', status: 'doing' },
+            { id: 't3', text: 'Bere caffè', status: 'done' }
+        ];
+
+        // Caricamento iniziale
+        function loadTasks() {
+            const stored = localStorage.getItem('kanban-tasks');
+            const tasks = stored ? JSON.parse(stored) : initialTasks;
+            
+            // Pulisci colonne
+            ['todo', 'doing', 'done'].forEach(id => {
+                const col = document.getElementById(id);
+                // Mantieni solo h3
+                while (col.childNodes.length > 2) col.removeChild(col.lastChild);
+            });
+
+            tasks.forEach(task => {
+                createTaskElement(task.text, task.id, task.status);
+            });
+        }
+
+        function createTaskElement(text, id, status) {
+            const div = document.createElement('div');
+            div.className = 'task';
+            div.draggable = true;
+            div.id = id;
+            div.innerText = text;
+            div.addEventListener('dragstart', drag);
+            document.getElementById(status).appendChild(div);
+        }
+
+        // --- Drag & Drop Logic ---
+        function allowDrop(ev) {
+            ev.preventDefault(); // Necessario per permettere il drop
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+            ev.target.classList.add('dragging');
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            const id = ev.dataTransfer.getData("text");
+            const draggableElement = document.getElementById(id);
+            draggableElement.classList.remove('dragging');
+            
+            // Trova la colonna target (assicurandoci che sia la colonna e non un task dentro)
+            let dropTarget = ev.target;
+            while (!dropTarget.classList.contains('column')) {
+                dropTarget = dropTarget.parentElement;
+            }
+            
+            dropTarget.appendChild(draggableElement);
+            saveState(); // Salva la nuova posizione
+        }
+
+        function saveState() {
+            const tasks = [];
+            document.querySelectorAll('.task').forEach(el => {
+                tasks.push({
+                    id: el.id,
+                    text: el.innerText,
+                    status: el.parentElement.id
+                });
+            });
+            localStorage.setItem('kanban-tasks', JSON.stringify(tasks));
+        }
+
+        loadTasks();
+    </script>
+</body>
+</html>

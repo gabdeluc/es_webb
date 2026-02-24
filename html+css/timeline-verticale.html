@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Timeline Verticale</title>
+
+<style>
+
+  body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#eef2f7;
+  }
+
+  h1{
+    text-align:center;
+    padding:20px 0;
+  }
+
+  /* CONTENITORE TIMELINE */
+  .timeline{
+    position:relative;
+    width:80%;
+    margin:30px auto;
+  }
+
+  /* LINEA CENTRALE */
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:0;
+    width:4px;
+    height:100%;
+    background:#3f51b5;
+    transform:translateX(-50%);
+  }
+
+  /* BOX EVENTO */
+  .evento{
+    width:45%;
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    position:relative;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    opacity:0;
+    transform:translateY(40px);
+    transition: all .6s ease;
+  }
+
+  /* Mostra con animazione (simulata all’onload) */
+  body.loaded .evento{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* PALLINO SULLA LINEA */
+  .evento::before{
+    content:"";
+    position:absolute;
+    top:20px;
+    width:18px;
+    height:18px;
+    background:#ff9800;
+    border-radius:50%;
+    border:3px solid white;
+    box-shadow:0 0 0 4px #3f51b5;
+  }
+
+  /* ALTERNANZA SINISTRA */
+  .left{
+    left:0;
+  }
+  .left::before{
+    right:-57px;
+  }
+
+  /* ALTERNANZA DESTRA */
+  .right{
+    left:55%;
+  }
+  .right::before{
+    left:-57px;
+  }
+
+  .icon{
+    width:45px;
+    height:45px;
+    object-fit:cover;
+    float:right;
+  }
+
+  .data{
+    font-weight:bold;
+    color:#3f51b5;
+  }
+
+  /* HOVER animazione */
+  .evento:hover{
+    transform:scale(1.02);
+  }
+
+  /* RESPONSIVE MOBILE -> tutti da un lato */
+  @media(max-width:768px){
+    .timeline::before{
+      left:20px;
+    }
+
+    .evento{
+      width:100%;
+      left:0 !important;
+      margin-left:45px;
+    }
+
+    .evento::before{
+      left:-45px;
+    }
+  }
+
+</style>
+
+<script>
+  /* aggiunge classe per far partire animazione */
+  window.onload = function(){
+    document.body.classList.add("loaded");
+  }
+</script>
+
+</head>
+
+<body>
+
+<h1>Timeline Professionale</h1>
+
+<div class="timeline">
+
+  <div class="evento left">
+    <span class="data">2015</span>
+    <img class="icon" src="https://via.placeholder.com/45" alt="">
+    <h3>Diploma</h3>
+    <p>Conclusione del liceo scientifico con indirizzo informatico.</p>
+  </div>
+
+  <div class="evento right">
+    <span class="data">2017</span>
+    <img class="icon" src="https://via.placeholder.com/45" alt="">
+    <h3>Primo Stage</h3>
+    <p>Esperienza come stagista in azienda IT locale.</p>
+  </div>
+
+  <div class="evento left">
+    <span class="data">2019</span>
+    <img class="icon" src="https://via.placeholder.com/45" alt="">
+    <h3>Laurea Triennale</h3>
+    <p>Laurea in informatica con tesi sul web development.</p>
+  </div>
+
+  <div class="evento right">
+    <span class="data">2022</span>
+    <img class="icon" src="https://via.placeholder.com/45" alt="">
+    <h3>Nuovo Lavoro</h3>
+    <p>Assunzione come frontend developer in azienda software.</p>
+  </div>
+
+  <div class="evento left">
+    <span class="data">2025</span>
+    <img class="icon" src="https://via.placeholder.com/45" alt="">
+    <h3>Team Leader</h3>
+    <p>Responsabile di un team di sviluppo web full-stack.</p>
+  </div>
+
+</div>
+
+</body>
+</html>

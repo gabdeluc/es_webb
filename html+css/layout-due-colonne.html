@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Layout Blog a Due Colonne</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f3f3f3;
+    }
+
+    header, footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 0 15px;
+      display: flex;
+      gap: 20px;
+    }
+
+    /* COLONNA PRINCIPALE */
+    .contenuto {
+      flex: 0 0 70%;
+      background-color: white;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      flex: 0 0 30%;
+      background-color: #ffffff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      height: fit-content;
+    }
+
+    .articolo {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 15px;
+    }
+
+    .articolo img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .articolo h2 {
+      margin: 10px 0 5px 0;
+    }
+
+    .widget {
+      margin-bottom: 15px;
+    }
+
+    /* RESPONSIVE MOBILE: sidebar sotto */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .contenuto, .sidebar {
+        flex: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Blog Tech News</h1>
+    <p>Ultimi articoli su tecnologia, coding e innovazione</p>
+  </header>
+
+  <div class="container">
+
+    <!-- CONTENUTO PRINCIPALE -->
+    <div class="contenuto">
+
+      <div class="articolo">
+        <img src="https://via.placeholder.com/800x300" alt="Articolo 1">
+        <h2>Cos'è il Responsive Web Design?</h2>
+        <p>
+          Il responsive web design permette ai siti di adattarsi automaticamente
+          a schermi di diverse dimensioni come smartphone, tablet e desktop.
+        </p>
+      </div>
+
+      <div class="articolo">
+        <img src="https://via.placeholder.com/800x300" alt="Articolo 2">
+        <h2>Introduzione a JavaScript Moderno</h2>
+        <p>
+          Grazie a ES6, JavaScript offre oggi funzionalità come arrow functions,
+          template string e moduli che rendono il codice più pulito ed efficiente.
+        </p>
+      </div>
+
+      <div class="articolo">
+        <img src="https://via.placeholder.com/800x300" alt="Articolo 3">
+        <h2>Come Iniziare con lo Sviluppo Web</h2>
+        <p>
+          HTML, CSS e JavaScript sono i tre pilastri fondamentali 
+          per iniziare a creare pagine web interattive e moderne.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <h3>Sidebar</h3>
+
+      <div class="widget">
+        <strong>Chi siamo</strong>
+        <p>Un blog dedicato a studenti e appassionati di informatica.</p>
+      </div>
+
+      <div class="widget">
+        <strong>Categorie</strong>
+        <ul>
+          <li>HTML & CSS</li>
+          <li>JavaScript</li>
+          <li>Framework</li>
+        </ul>
+      </div>
+
+      <div class="widget">
+        <strong>Newsletter</strong>
+        <p>Iscriviti per ricevere aggiornamenti!</p>
+      </div>
+    </aside>
+
+  </div>
+
+  <footer>
+    <p>© 2026 – Blog Tech News</p>
+  </footer>
+
+</body>
+</html>

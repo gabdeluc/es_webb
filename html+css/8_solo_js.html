@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="Team BirdWatch" />
+  <title>BirdWatch — Home</title>
+
+  <!-- link alla CSS esistente + il CSS aggiuntivo richiesto -->
+  <link rel="stylesheet" href="base-style.css" />
+  <link rel="stylesheet" href="layout-style.css" />
+
+  <!-- se vuoi vedere subito qualcosa senza file esterni, puoi includere qui del CSS di base -->
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    header, nav, main, aside, footer { padding: 1rem; }
+    header { background: #e8f5e9; display: flex; align-items: center; gap: 1rem; }
+    .logo { width: 70px; height: 70px; background: #b2df8a; display:inline-block; border-radius:8px; }
+    .site-title { font-size: 1.6rem; margin: 0; }
+    nav ul { list-style: none; padding: 0; margin: 0.5rem 0 0 0; display:flex; gap:1rem; }
+    .container { display: flex; gap: 1rem; padding: 1rem; }
+    main.article { flex: 3; }
+    aside.sidebar { flex: 1; background: #f6f8f6; }
+    footer { background: #eee; text-align: center; }
+  </style>
+</head>
+<body>
+
+  <!-- Header wrapper: title, logo, navigation (nav appears below title/logo in layout/CSS) -->
+  <header>
+    <div class="logo" role="img" aria-label="BirdWatch logo"></div>
+    <div>
+      <h1 class="site-title">BirdWatch</h1>
+      <p class="tagline">Osservazione degli uccelli per appassionati</p>
+      <!-- Navigation (wrapped in nav element) -->
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="species.html">Specie</a></li>
+          <li><a href="guides.html">Guide</a></li>
+          <li><a href="contact.html">Contatti</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main content area with two columns: main block + sidebar -->
+  <main>
+    <div class="container">
+      <article class="article" role="main">
+        <h2>Benvenuto su BirdWatch</h2>
+        <p>Questo sito è dedicato agli appassionati di osservazione degli uccelli. Troverai guide,
+           articoli e una galleria di foto per imparare a riconoscere le specie locali.</p>
+
+        <section>
+          <h3>Ultime dal blog</h3>
+          <article>
+            <h4>Il ritorno del Fringuello</h4>
+            <p>Descrizione breve... <a href="post1.html">Leggi tutto</a></p>
+          </article>
+          <article>
+            <h4>5 consigli per il birdwatching in città</h4>
+            <p>Descrizione breve... <a href="post2.html">Leggi tutto</a></p>
+          </article>
+        </section>
+      </article>
+
+      <aside class="sidebar" aria-label="Sidebar con miniature">
+        <h3>Galleria</h3>
+        <ul>
+          <li><img src="thumb1.jpg" alt="Immagine pettirosso" width="100"></li>
+          <li><img src="thumb2.jpg" alt="Immagine rondine" width="100"></li>
+          <li><img src="thumb3.jpg" alt="Immagine upupa" width="100"></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 BirdWatch — Credits and contact info</p>
+  </footer>
+</body>
+</html>

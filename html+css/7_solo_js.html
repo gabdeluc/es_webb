@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <style>
+        body { font-family: sans-serif; padding: 20px; text-align: center; }
+        #result { font-size: 24px; font-weight: bold; margin: 20px 0; padding: 10px; background: #f0f0f0; min-height: 30px; }
+        button { padding: 10px 20px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>Password Generator</h2>
+    <div id="result">La tua password apparirà qui</div>
+    <button onclick="generatePassword()">Genera Password</button>
+
+    <script>
+        function generatePassword() {
+            const length = 12; // Lunghezza password
+            const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+            let password = "";
+
+            for (let i = 0; i < length; i++) {
+                // 1. Genera un numero casuale tra 0 e la lunghezza del charset
+                const randomIndex = Math.floor(Math.random() * charset.length);
+                
+                // 2. Aggiungi il carattere corrispondente alla password
+                password += charset.charAt(randomIndex);
+            }
+
+            document.getElementById("result").innerText = password;
+        }
+    </script>
+</body>
+</html>

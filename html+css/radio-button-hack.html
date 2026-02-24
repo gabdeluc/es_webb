@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion FAQ - Solo CSS</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --bg-even: #f9f9f9;
+            --bg-odd: #ffffff;
+            --text-color: #333;
+            --transition-speed: 0.4s;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+
+        .faq-container {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--text-color);
+            padding: 20px;
+            margin: 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Nascondiamo i radio button originali */
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* Struttura della riga */
+        .faq-item {
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Colori alternati per le domande */
+        .faq-item:nth-child(even) .faq-label {
+            background-color: var(--bg-even);
+        }
+        .faq-item:nth-child(odd) .faq-label {
+            background-color: var(--bg-odd);
+        }
+
+        /* Label (La domanda) */
+        .faq-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-color);
+            transition: background var(--transition-speed);
+        }
+
+        .faq-label:hover {
+            background-color: #f0f7ff !important;
+        }
+
+        /* Icona che ruota */
+        .faq-label::after {
+            content: '\276F'; /* Freccia */
+            transform: rotate(90deg);
+            transition: transform var(--transition-speed);
+            color: var(--primary-color);
+            font-size: 0.8rem;
+        }
+
+        /* Contenitore della risposta (Inizialmente chiuso) */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-speed) ease-in-out;
+            background: white;
+        }
+
+        .faq-content p {
+            padding: 0 20px 20px 20px;
+            margin: 0;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* LOGICA DI APERTURA */
+        /* Quando il radio è selezionato: */
+        
+        /* 1. Ruota l'icona */
+        input[type="radio"]:checked + .faq-label::after {
+            transform: rotate(-90deg);
+        }
+
+        /* 2. Espandi il contenuto (Animazione Smooth) */
+        /* Usiamo max-height con un valore abbastanza grande da contenere il testo */
+        input[type="radio"]:checked ~ .faq-content {
+            max-height: 200px; 
+        }
+
+        /* 3. Evidenzia la domanda aperta */
+        input[type="radio"]:checked + .faq-label {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="faq-container">
+    <h2>Domande Frequenti</h2>
+
+    <div class="faq-item">
+        <input type="radio" name="faq-group" id="faq1" checked>
+        <label class="faq-label" for="faq1">Cos'è il CSS Accordion?</label>
+        <div class="faq-content">
+            <p>È un componente UI che permette di nascondere o mostrare contenuti in modo dinamico, migliorando l'organizzazione delle informazioni sulla pagina.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <input type="radio" name="faq-group" id="faq2">
+        <label class="faq-label" for="faq2">Come funziona il Radio Hack?</label>
+        <div class="faq-content">
+            <p>Sfrutta la proprietà dei tag HTML <code>&lt;input type="radio"&gt;</code>: quando uno viene selezionato, gli altri con lo stesso nome vengono deselezionati automaticamente.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <input type="radio" name="faq-group" id="faq3">
+        <label class="faq-label" for="faq3">Le animazioni sono fluide?</label>
+        <div class="faq-content">
+            <p>Sì, utilizzando la proprietà <code>max-height</code> combinata con <code>transition</code>, è possibile creare un effetto di scorrimento naturale senza JavaScript.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <input type="radio" name="faq-group" id="faq4">
+        <label class="faq-label" for="faq4">È accessibile?</label>
+        <div class="faq-content">
+            <p>Utilizzare le label collegate agli input è una buona pratica, ma per una piena accessibilità (A11y) nei progetti reali si consiglia l'uso dei tag <code>&lt;details&gt;</code> e <code>&lt;summary&gt;</code>.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <input type="radio" name="faq-group" id="faq5">
+        <label class="faq-label" for="faq5">Posso cambiare i colori?</label>
+        <div class="faq-content">
+            <p>Certamente! Grazie all'uso delle CSS Variables (<code>:root</code>), puoi modificare l'aspetto dell'intero accordion cambiando solo pochi parametri all'inizio del foglio di stile.</p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

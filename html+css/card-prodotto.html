@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Card Prodotto</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background-color: white;
+      width: 320px;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    .card h2 {
+      margin: 10px 0 5px 0;
+    }
+
+    .price {
+      color: green;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      background-color: #0066cc;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: #004999;
+      transform: scale(1.03);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/300x200" alt="Prodotto">
+
+    <h2>Cuffie Wireless Pro</h2>
+
+    <p class="price">€ 89,99</p>
+
+    <p>
+      Cuffie Bluetooth con cancellazione del rumore,
+      autonomia fino a 30 ore e ricarica rapida.
+    </p>
+
+    <button class="btn">Aggiungi al carrello</button>
+  </div>
+
+</body>
+</html>

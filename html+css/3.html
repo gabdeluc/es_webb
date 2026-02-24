@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card 3D Flip</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card-wrapper {
+            perspective: 1000px;
+            width: 320px;
+            height: 420px;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .card-wrapper:hover .card:not(.locked) {
+            transform: rotateY(180deg);
+        }
+
+        .card.locked {
+            cursor: not-allowed;
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card-wrapper:hover .card-face {
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .card-header h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .card-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .card-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card-content li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card-content li:before {
+            content: "✓ ";
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .lock-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .lock-btn:hover {
+            background: white;
+            color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .icon {
+            font-size: 48px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .card-wrapper {
+                width: 280px;
+                height: 380px;
+            }
+
+            .container {
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card-wrapper">
+            <div class="card" id="card1">
+                <div class="card-face card-front">
+                    <div class="card-header">
+                        <h2>Premium Plan</h2>
+                        <p>Per professionisti</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="icon">💎</div>
+                        <h3>€49/mese</h3>
+                        <p>Passa il mouse per vedere i dettagli</p>
+                    </div>
+                    <button class="lock-btn" onclick="toggleLock('card1', event)">🔓 Sblocca</button>
+                </div>
+                <div class="card-face card-back">
+                    <div class="card-header">
+                        <h2>Caratteristiche</h2>
+                        <p>Tutto incluso</p>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>Spazio illimitato</li>
+                            <li>Supporto prioritario 24/7</li>
+                            <li>Analytics avanzati</li>
+                            <li>API access</li>
+                            <li>Team collaboration</li>
+                        </ul>
+                    </div>
+                    <button class="lock-btn" onclick="toggleLock('card1', event)">🔓 Sblocca</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="card" id="card2">
+                <div class="card-face card-front">
+                    <div class="card-header">
+                        <h2>Enterprise</h2>
+                        <p>Per grandi team</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="icon">🚀</div>
+                        <h3>Custom</h3>
+                        <p>Passa il mouse per vedere i dettagli</p>
+                    </div>
+                    <button class="lock-btn" onclick="toggleLock('card2', event)">🔓 Sblocca</button>
+                </div>
+                <div class="card-face card-back">
+                    <div class="card-header">
+                        <h2>Caratteristiche</h2>
+                        <p>Soluzioni su misura</p>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li>Tutto del Premium +</li>
+                            <li>Dedicated manager</li>
+                            <li>Custom integrations</li>
+                            <li>SLA garantito</li>
+                            <li>Training on-site</li>
+                        </ul>
+                    </div>
+                    <button class="lock-btn" onclick="toggleLock('card2', event)">🔓 Sblocca</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleLock(cardId, event) {
+            event.stopPropagation();
+            const card = document.getElementById(cardId);
+            const buttons = card.querySelectorAll('.lock-btn');
+            
+            if (card.classList.contains('locked')) {
+                card.classList.remove('locked');
+                buttons.forEach(btn => {
+                    btn.textContent = '🔓 Sblocca';
+                });
+            } else {
+                card.classList.add('locked');
+                buttons.forEach(btn => {
+                    btn.textContent = '🔒 Bloccata';
+                });
+            }
+        }
+    </script>
+</body>
+</html>

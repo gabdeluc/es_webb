@@ -1,0 +1,54 @@
+/* Reset di base per pulire i margini predefiniti del browser */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Importante: include padding e border nel calcolo della larghezza */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center; /* Centra la card orizzontalmente */
+    align-items: center;     /* Centra la card verticalmente */
+    height: 100vh;           /* Altezza pari a tutto lo schermo */
+}
+
+.card {
+    background-color: white;
+    width: 300px;           /* Content */
+    padding: 20px;          /* Padding: spazio tra contenuto e bordo */
+    border: 2px solid #333; /* Border: il contorno */
+    margin: 10px;           /* Margin: spazio esterno alla card */
+    
+    border-radius: 15px;    /* Arrotonda gli angoli */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Ombra per dare profondità */
+}
+
+.profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;     /* Rende l'immagine circolare */
+    margin-bottom: 15px;
+}
+
+.job-title {
+    color: #007BFF;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s; /* Animazione fluida */
+}
+
+button:hover {
+    background-color: #007BFF; /* Cambia colore al passaggio del mouse */
+}
